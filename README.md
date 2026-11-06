@@ -82,7 +82,8 @@ python run.py --channel story --dry-run --shortlist 3         # sirf planning
 | `OPENAI_API_KEY` (+ `OPENAI_BASE_URL`, `SCRIPT_MODEL`) | Naye scripts har roz | Curated line-bank se script |
 | `YOUTUBE_CLIENT_ID/SECRET/REFRESH_TOKEN` | Auto upload | Video local render hoke ruk jayega |
 
-YouTube upload setup (ek baar) — poora detail `docs/SETUP.md` me hai, short me:
+YouTube upload setup (ek baar) — poora detail `docs/SETUP.md` me hai, aur **click-by-click credentials guide**
+[`docs/CREDENTIALS.md`](docs/CREDENTIALS.md) me. Short me:
 
 1. Google Cloud Console -> new project -> **YouTube Data API v3** enable karo.
 2. OAuth consent screen -> External -> khud ko **test user** add karo.

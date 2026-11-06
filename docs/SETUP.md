@@ -8,6 +8,9 @@ Total one-time kaam: **~1 ghanta**. Uske baad roz **5 minute** (video dekh ke Pu
 > ya refresh token kabhi code, commit, issue ya log me nahi.** Sab sirf GitHub **Secrets** me. (Isi wajah se
 > token nikalne ka kaam Actions me nahi, Google ke apne OAuth Playground me hota hai — neeche Step 7.)
 
+Credentials ka literal click-by-click (deep links, kya dabana hai, kya copy karna hai):
+**[`docs/CREDENTIALS.md`](CREDENTIALS.md)**
+
 ---
 
 ## Part 1 — Free me exactly kya chalega
@@ -74,6 +77,8 @@ Repo bana diya hai (public). Bas `github.com` pe sign in karke apna repo khol lo
 👉 Ye **`YOUTUBE_API_KEY`** hai. (Trending/popular videos padhne ke liye. Isse upload nahi hota, isliye ye kam risk hai — par phir bhi sirf secret me rakho.)
 
 ### Step 5 — OAuth consent screen + client (10 min)
+
+Google ne isko **"Google Auth Platform"** naam de diya hai (consent screen ke andar hi khulta hai).
 
 1. **APIs & Services → OAuth consent screen**:
    - User type **External** → Create
