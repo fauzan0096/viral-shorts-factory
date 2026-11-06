@@ -176,15 +176,40 @@ Green tick + artifact `video-and-report` = sab set. Uske baad mode `private` se 
 Cloud Console (ya sign-in page) purana Gmail dikha raha hai = browser usi account me logged in hai.
 GCP ke projects account ke andar rehte hain, isliye doosre account ke projects dikhane ke liye account switch karna padta hai.
 
+### Dimaag kharab wala scene: 2 accounts, ek hi browser
+
+Ye normal hai — Google ek hi browser me kai accounts rakhta hai aur har product apna account chun leta hai.
+Agar ek account "business" (Google Workspace) ka hai to wo apne admin / "business" pages pe bhej deta hai.
+
+**Rule: ek kaam = ek account = ek browser window.**
+
+1. Chrome/Safari me **Private / Incognito** tab kholo (normal tab band rakho).
+2. `console.cloud.google.com` → sign in me email **haath se type karo**.
+   "Continue as …" wale cards pe tap mat karo — wahi account switch karate hain.
+3. Poora Cloud kaam usi tab me karo: project, API key, OAuth client, Publish.
+4. Token ke liye **naya** private tab kholo → Playground → sirf **channel wala account**.
+
+Bas — do window, do account, koi switching nahi.
+
+### Sabse seedha raasta: switch hi mat karo
+
+**Project owner ka account = jis se Cloud Console aaram se khulta hai** (business account bhi chalega).
+Channel wala account sirf 2 jagah chahiye: Test users me add, aur Playground me sign-in.
+
+Matlab "purana email se naya email" switch karne ki zaroorat hi nahi. (Sirf tab badlo jab business account pe
+"Your organization has disabled Cloud Platform" type rok aaye — tab us account ko chhod do aur ek naya personal
+Gmail banao, usi me channel + project dono.)
+
 1. **Cloud Console**: top-right apna avatar → **Switch account** (ya **Sign out**) → naya Gmail.
    Menu me switch na dikhe to seedha **Sign out** → **Sign in with a different account**.
 2. **Google sign-in / consent page**: account chip dabao → **Use another account** → naya Gmail + password.
-3. **Sabse pakka (phone)**: Chrome/Safari me **Private/Incognito** tab kholo → `console.google.com` → sirf naya account
+3. **Sabse pakka (phone)**: Chrome/Safari me **Private/Incognito** tab kholo → `console.cloud.google.com` → sirf naya account
    login karo. Purana session bahar reh jayega.
 4. **Apna project dhundo**: top bar me project dropdown → **All** tab → search `shorts-pipeline`.
    (Project tabhi dikhega jis account me bana hai.)
 5. **Confirm karo kaun sa account active hai**: avatar pe email, ya `https://console.cloud.google.com/iam-admin/settings`
    → project name + tumhara email.
+6. **Sab se sign out karna ho** to: `https://accounts.google.com/logout` → **Sign out of all accounts**.
 
 ### Project galti se purane account me ban gaya?
 
