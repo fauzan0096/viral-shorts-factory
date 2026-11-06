@@ -1,0 +1,80 @@
+{
+  "name": "Chhoti Kahani",
+  "language": "hi",
+  "duration_target": 48,
+  "voice": "hi-IN-SwaraNeural",
+  "voice_rate": "+6%",
+  "words_per_second": 2.5,
+  "region_code": "IN",
+  "category_id": "24",
+  "topic_queries": [
+    "moral story hindi",
+    "motivational story hindi",
+    "life lesson story hindi",
+    "chhoti kahani hindi"
+  ],
+  "broll_queries": [
+    "village sunrise",
+    "old man portrait",
+    "rain window",
+    "forest path",
+    "market evening",
+    "child running"
+  ],
+  "music_volume": 0.14,
+  "caption_font": "Noto Sans Devanagari",
+  "caption_size": 19,
+  "caption_margin_v": 310,
+  "thumb_wrap": 15,
+  "thumb_size": 96,
+  "hooks": [
+    "{topic} — ye kahani tumhare saath rahegi.",
+    "Ek chhoti kahani: {topic}.",
+    "{topic} — last tak suno.",
+    "{topic}, aur ek sabak jo bhoola nahi jaata."
+  ],
+  "line_bank": [
+    "Ek gaon me ek lohar rehta tha. Roz wahi kaam, wahi shaam.",
+    "Sab usse kehte: itna kaam karke faayda kya?",
+    "Wo hansta tha, kaam karta rehta tha.",
+    "Ek din gaon me nayi factory aayi. Sab log bhaagte hue gaye.",
+    "Par wo lohar gaya nahi. Usne apna kaam behtar karna shuru kiya.",
+    "Do saal baad factory band ho gayi.",
+    "Wo lohar abhi bhi kaam kar raha tha — kyunki uske haath, uski machine thi.",
+    "Is kahani ka sabak: skill ka koi competitor nahi hota.",
+    "Doosri kahani: ek ladka roz mandir ke bahar phool bechta tha.",
+    "Ek din ek bada aadmi rukka aur bola, tum yahan kyun khade ho?",
+    "Ladka bola: kyunki yahan se sab log guzarte hain.",
+    "Aadmi hansa aur wapas aaya do din baad, apni dukaan ka owner banane.",
+    "Sabak: opportunity khud dikhti hai, kam se kam tum dikho.",
+    "Teesri kahani: ek buzurg ke paas ek purana ghada tha.",
+    "Bhara hua ghada har roz wahi paani deta tha.",
+    "Ek din ghada bola: main tuta hua hoon, mujhe badal do.",
+    "Buzurg ne kaha: tere taad se hi ye aangan hara hai.",
+    "Sabak: consistent pani gamle se zyada zaroori hai.",
+    "Chhoti chhoti aadat hi zindagi ka ghar banati hai.",
+    "Kahani khatam, par seekh aaj se shuru."
+  ],
+  "idea_templates": [
+    "Kahani: {keyword}",
+    "{keyword} — ek chhoti kahani",
+    "Sabak: {keyword}"
+  ],
+  "seed_ideas": [
+    "Lohar aur factory",
+    "Phool bechne wala ladka",
+    "Tuta hua ghada",
+    "Do aadmi aur nadi",
+    "Bus ki chhat wala ladka",
+    "Purani chappal ka sabak",
+    "Ek kisaan aur uska beta",
+    "Chai wale ki mehnat",
+    "Ek seedha raasta",
+    "Patton ka sabak",
+    "Ek raat ki baarish",
+    "Sabse bada sabak"
+  ],
+  "cta": "Aisi ek kahani roz — channel follow karo.",
+  "hashtags": ["#kahani", "#shorts", "#story", "#hindi", "#moralkahani", "#life"],
+  "privacy": "private"
+}

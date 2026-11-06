@@ -1,0 +1,81 @@
+{
+  "name": "Theek Hai Bhai",
+  "language": "hi",
+  "duration_target": 30,
+  "voice": "hi-IN-MadhurNeural",
+  "voice_rate": "+14%",
+  "words_per_second": 2.9,
+  "region_code": "IN",
+  "category_id": "23",
+  "topic_queries": [
+    "relatable comedy hindi",
+    "funny hindi shorts",
+    "expectation vs reality hindi",
+    "indian family comedy"
+  ],
+  "broll_queries": [
+    "friends laughing",
+    "office desk tired",
+    "traffic india",
+    "chai cup closeup",
+    "phone scrolling night",
+    "family living room"
+  ],
+  "music_volume": 0.18,
+  "caption_font": "Noto Sans Devanagari",
+  "caption_size": 22,
+  "caption_margin_v": 320,
+  "thumb_wrap": 15,
+  "thumb_size": 100,
+  "hooks": [
+    "{topic} — batao tum bhi wahi karte ho?",
+    "Sach bol: {topic}.",
+    "{topic}. Har ghar ki kahani.",
+    "{topic} — ye tumhare ghar me bhi hota hai.",
+    "{topic} par ek minute ruk ja."
+  ],
+  "line_bank": [
+    "Mummy: beta padh rahe ho? Main: haan. Screen: 47 tabs khuli hain.",
+    "Wifi slow ho to zindagi ruk jaati hai, kaam nahi.",
+    "'Bas 5 minute' — 2 ghante baad.",
+    "Chai ke bina subah itni hi possible hai jitni exam bina padhai.",
+    "Papa ka dialogue: main tumhari umar me cycle se 12 km jaata tha.",
+    "Group project ka matlab: ek kaam karta hai, baaki credit lete hain.",
+    "Salary aayi, 4 din me gayab.",
+    "Alarm 7 baje bajta hai, uthna 7:40 pe hota hai.",
+    "'Kal se gym' — kal se hi kabhi nahi aata.",
+    "Shopping me budget nahi, mood decide karta hai.",
+    "Relatives ka sabse dangerous sawal: ab padhai kaisi chal rahi hai?",
+    "Phone 1 percent par ho to duniya ka sabse fast insaan ban jaate ho.",
+    "Photo ke liye 15 try, par real life me ek bhi dikhne ki himmat nahi.",
+    "Sunday night ka mood: kal Monday hai.",
+    "Khaane ke baad neend, neend ke baad guilt.",
+    "Chat me seen karke reply 3 din baad — strategy hai.",
+    "Dost ka plan: bulao mat, main aa raha hoon. Aata kabhi nahi.",
+    "Naye kapde mehngi, purane comfortable — life ka conflict.",
+    "Exam me jo aata nahi, wahi question 10 marks ka hota hai.",
+    "Login ke waqt password bhool jaana, reset me 20 minute."
+  ],
+  "idea_templates": [
+    "POV: {keyword}",
+    "{keyword} — har ghar ki kahani",
+    "Expectation vs reality: {keyword}"
+  ],
+  "seed_ideas": [
+    "Wifi slow ka dard",
+    "Bas 5 minute ka jhooth",
+    "Group project ka sach",
+    "Salary ka 4 din ka safar",
+    "Alarm vs neend",
+    "Kal se gym",
+    "Relatives ka sawal",
+    "Phone 1 percent",
+    "Sunday night mood",
+    "Naye kapde vs purane",
+    "Exam ka 10 marks wala sawal",
+    "Chat me seen karke reply"
+  ],
+  "cta": "Relatable laga to follow kar lo, roz hasate rahenge.",
+  "hashtags": ["#comedy", "#shorts", "#relatable", "#funny", "#hindi", "#memes"],
+  "privacy": "private"
+}

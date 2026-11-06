@@ -1,0 +1,11 @@
+work/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+venv/
+
+# b-roll files are big — keep them out of git
+assets/broll/*
+!assets/broll/.gitkeep

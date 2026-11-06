@@ -1,0 +1,72 @@
+name: Daily short
+
+on:
+  schedule:
+    # 02:30 UTC = 08:00 IST — video subah tak private, tum approve karke publish karo
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Channel profile id (motivation | facts | comedy | story)"
+        default: "motivation"
+      mode:
+        description: "Upload: private | public | unlisted | none"
+        default: "private"
+      idea:
+        description: "Optional: force a topic"
+        default: ""
+
+concurrency:
+  group: daily-short
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg + fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-core fonts-noto-devanagari fonts-dejavu-core
+
+      - name: Install optional deps
+        run: pip install -r requirements.txt
+
+      - name: Render + upload
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SCRIPT_MODEL: ${{ vars.SCRIPT_MODEL || 'gpt-4o-mini' }}
+        run: |
+          CH="${{ github.event.inputs.channel || 'motivation' }}"
+          MODE="${{ github.event.inputs.mode || 'private' }}"
+          IDEA="${{ github.event.inputs.idea }}"
+          if [ -n "$IDEA" ]; then
+            python run.py --channel "$CH" --upload "$MODE" --idea "$IDEA"
+          else
+            python run.py --channel "$CH" --upload "$MODE"
+          fi
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-and-report
+          path: |
+            work/**/video.mp4
+            work/**/thumbnail.jpg
+            work/**/review.md
+            work/**/script.txt
+          if-no-files-found: warn
+          retention-days: 14

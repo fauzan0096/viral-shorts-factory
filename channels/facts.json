@@ -1,0 +1,81 @@
+{
+  "name": "Rok Facts",
+  "language": "hi",
+  "duration_target": 34,
+  "voice": "hi-IN-MadhurNeural",
+  "voice_rate": "+10%",
+  "words_per_second": 2.7,
+  "region_code": "IN",
+  "category_id": "27",
+  "topic_queries": [
+    "amazing facts hindi",
+    "science facts hindi shorts",
+    "did you know hindi",
+    "history facts hindi"
+  ],
+  "broll_queries": [
+    "space nebula",
+    "ocean underwater",
+    "microscope close up",
+    "ancient ruins",
+    "animal wildlife closeup",
+    "abstract particles"
+  ],
+  "music_volume": 0.15,
+  "caption_font": "Noto Sans Devanagari",
+  "caption_size": 21,
+  "caption_margin_v": 300,
+  "thumb_wrap": 16,
+  "thumb_size": 96,
+  "hooks": [
+    "{topic} — ye fact tumhara dimag hila dega.",
+    "{topic}: 99 percent log ye nahi jaante.",
+    "{topic} — ek second ke liye ye sun le.",
+    "{topic} par ye sach kisi ne nahi bataya.",
+    "Aaj ka fact: {topic}."
+  ],
+  "line_bank": [
+    "Octopus ke teen dil hote hain.",
+    "Antarctica duniya ka sabse bada desert hai.",
+    "Shark dinosaur se pehle se duniya me hain.",
+    "Cheetah 3 second me 100 kmph tak pahunch sakta hai.",
+    "Kela technically ek berry hai.",
+    "Shehad kabhi kharab nahi hota — hazaar saal purana honey bhi khaya gaya hai.",
+    "Tumhari body me itna iron hai ki ek chhota kheel ban sakta hai.",
+    "Ek din me tum 20 hazaar se zyada baar saans lete ho.",
+    "Bijli ki ek timtimaahat duniya ke kisi bhi hisse me 100 baar gir sakti hai.",
+    "Neend me dimag kachra saaf karta hai — literally.",
+    "Ek chai ki pyaali me 40 se 60 mg caffeine hota hai.",
+    "Doodh me 87 percent paani hota hai.",
+    "Snail ke hazaar se zyada chhote daant hote hain.",
+    "Mount Everest har saal thoda badhta hai.",
+    "Insaan ka shareer duniya ke sabse powerful computer se bhi tez pattern pehchanta hai.",
+    "Ek glass samudri paani me lakho microorganisms hote hain.",
+    "Space me awaaz travel nahi karti.",
+    "Tumhari haddiyan steel se strong hain, weight me steel se halki.",
+    "Duniya ki sabse purani known recipe beer ki hai.",
+    "Earth par har second 100 se zyada bijli gir sakti hai."
+  ],
+  "idea_templates": [
+    "Fact: {keyword}",
+    "{keyword} — ye sach koi nahi batata",
+    "{keyword} ke baare me 3 shocking baat"
+  ],
+  "seed_ideas": [
+    "Octopus ke teen dil",
+    "Antarctica ka desert hone ka sach",
+    "Shark dinosaur se purane",
+    "Kela berry hai",
+    "Neend me dimag ka cleaning mode",
+    "Space me awaaz kyun nahi",
+    "Haddi steel se strong",
+    "Cheetah ki speed",
+    "Shehad kabhi kharab kyun nahi hota",
+    "Ek glass samudri paani",
+    "Mount Everest ka badhna",
+    "Doodh me paani"
+  ],
+  "cta": "Aisa ek fact roz — follow kar lo.",
+  "hashtags": ["#facts", "#shorts", "#hindi", "#didyouknow", "#science", "#amazingfacts"],
+  "privacy": "private"
+}

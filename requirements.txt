@@ -1,0 +1,3 @@
+# Optional but recommended: free neural TTS (Hindi/English voices).
+# Without it the pipeline still renders, using silent audio + burned-in captions.
+edge-tts>=6.1.9
