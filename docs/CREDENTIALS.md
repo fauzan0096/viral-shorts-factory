@@ -171,7 +171,39 @@ Green tick + artifact `video-and-report` = sab set. Uske baad mode `private` se 
 
 ---
 
+## Galat Google account khul raha hai?
+
+Cloud Console (ya sign-in page) purana Gmail dikha raha hai = browser usi account me logged in hai.
+GCP ke projects account ke andar rehte hain, isliye doosre account ke projects dikhane ke liye account switch karna padta hai.
+
+1. **Cloud Console**: top-right apna avatar → **Switch account** (ya **Sign out**) → naya Gmail.
+   Menu me switch na dikhe to seedha **Sign out** → **Sign in with a different account**.
+2. **Google sign-in / consent page**: account chip dabao → **Use another account** → naya Gmail + password.
+3. **Sabse pakka (phone)**: Chrome/Safari me **Private/Incognito** tab kholo → `console.google.com` → sirf naya account
+   login karo. Purana session bahar reh jayega.
+4. **Apna project dhundo**: top bar me project dropdown → **All** tab → search `shorts-pipeline`.
+   (Project tabhi dikhega jis account me bana hai.)
+5. **Confirm karo kaun sa account active hai**: avatar pe email, ya `https://console.cloud.google.com/iam-admin/settings`
+   → project name + tumhara email.
+
+### Project galti se purane account me ban gaya?
+
+GCP project ko ek account se doosre me move karna free me nahi hota (organization chahiye). Sabse simple:
+**naye account se naya project banao** aur Step 1-7 dobara (~15 min). Purana project pada rehne do — usme koi charge nahi.
+
+### Ya phir purana project hi rakho
+
+Bilkul chalega. Cloud project kisi bhi account ka ho — sirf 2 baatein:
+
+- Agar consent screen **Testing** me hai to channel wala Gmail **Test users** me add karo.
+- **Refresh token channel wale account se banao** (Step 6), warna video galat channel pe chala jayega.
+
+Project owner ka account aur YouTube channel ka account same hona zaroori nahi hai.
+
+---
+
 ## 3 baatein jo bhoolni nahi
+
 
 1. **Ye 4 values kabhi kisi ko na do** — refresh token se koi tumhari channel pe video upload/delete kar sakta hai.
 2. Client secret **sirf ek baar** dikhta hai (naye clients me) — na dikhe to **Add secret** se naya banao, purana disable karo.
