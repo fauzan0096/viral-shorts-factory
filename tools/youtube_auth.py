@@ -11,12 +11,14 @@ Setup:
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 from pipeline.config import env, load_env
 from pipeline.youtube import DEVICE_CODE_URL, SCOPES, TOKEN_URL
@@ -42,11 +44,19 @@ def _post(url: str, body: dict) -> dict:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="YouTube OAuth device flow -> refresh token")
+    parser.add_argument(
+        "--out",
+        default=None,
+        help="refresh token ko is file me bhi likho (GitHub Actions artifact ke liye)",
+    )
+    args = parser.parse_args()
+
     load_env()
     client_id = env("YOUTUBE_CLIENT_ID")
     client_secret = env("YOUTUBE_CLIENT_SECRET")
     if not client_id or not client_secret:
-        print("Pehle .env me YOUTUBE_CLIENT_ID aur YOUTUBE_CLIENT_SECRET daalo.")
+        print("YOUTUBE_CLIENT_ID / YOUTUBE_CLIENT_SECRET missing (.env ya repo secrets me daalo).")
         return 1
 
     start = _post(DEVICE_CODE_URL, {"client_id": client_id, "scope": SCOPES})
@@ -54,9 +64,12 @@ def main() -> int:
         print(json.dumps(start, indent=2, ensure_ascii=False))
         return 1
 
-    print(f"1) Browser me kholo: {start['verification_url']}")
-    print(f"2) Code daalo:       {start['user_code']}")
-    print("3) Google account se allow karo, phir yahin wait karo...\n")
+    print("APNE PHONE KE BROWSER ME YE KHOLO (kisi bhi device se):")
+    print(f"   URL  : {start['verification_url']}")
+    print(f"   CODE : {start['user_code']}")
+    print("")
+    print("Wahan Google account se sign in karo -> apna channel choose karo -> Allow dabao.")
+    print("Ye job khud wait karegi. Allow karte hi 10-20 second me token mil jayega.\n")
 
     interval = max(5, int(start.get("interval", 5)))
     deadline = time.time() + int(start.get("expires_in", 1800))
@@ -71,9 +84,13 @@ def main() -> int:
                 "grant_type": "urn:ietf:params:oauth:grant-type:device_code",
             },
         )
-        if token.get("refresh_token"):
-            print(".env me ye line daalo:\n")
-            print(f"YOUTUBE_REFRESH_TOKEN={token['refresh_token']}")
+        refresh_token = token.get("refresh_token")
+        if refresh_token:
+            print("MIL GAYA. Ab ise YOUTUBE_REFRESH_TOKEN secret me daalo.\n")
+            print(f"YOUTUBE_REFRESH_TOKEN={refresh_token}")
+            if args.out:
+                Path(args.out).write_text(refresh_token + "\n", encoding="utf-8")
+                print(f"\n(token {args.out} me bhi likh diya — job ke baad artifact download kar lo)")
             return 0
 
         error = token.get("error")
@@ -87,8 +104,9 @@ def main() -> int:
         print(json.dumps(token, indent=2, ensure_ascii=False))
         return 1
 
-    print("Code expire ho gaya — script dobara chalao.")
+    print("Code expire ho gaya — job dobara chalao.")
     return 1
+
 
 
 if __name__ == "__main__":

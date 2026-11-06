@@ -6,6 +6,9 @@ Ek roz ek short — roz ka pura kaam ek command me:
 
 Sab kuch Python + ffmpeg me hai. Koi paid runner nahi chahiye; GitHub Actions free tier bhi kaafi hai.
 
+**Laptop nahi hai?** Poora setup phone se hota hai — step-by-step: [`docs/SETUP.md`](docs/SETUP.md)
+(kya free hai, kya karna hai, kis order me, aur kya break hone pe kya karna hai).
+
 ---
 
 ## 1. Kaunse 4 channel banenge (ye maine chune hain)
@@ -79,15 +82,21 @@ python run.py --channel story --dry-run --shortlist 3         # sirf planning
 | `OPENAI_API_KEY` (+ `OPENAI_BASE_URL`, `SCRIPT_MODEL`) | Naye scripts har roz | Curated line-bank se script |
 | `YOUTUBE_CLIENT_ID/SECRET/REFRESH_TOKEN` | Auto upload | Video local render hoke ruk jayega |
 
-YouTube upload setup (ek baar):
+YouTube upload setup (ek baar) — poora detail `docs/SETUP.md` me hai, short me:
 
 1. Google Cloud Console -> new project -> **YouTube Data API v3** enable karo.
 2. OAuth consent screen -> External -> khud ko **test user** add karo.
-3. Credentials -> OAuth client ID -> type **"TVs and Limited Input devices"**.
-4. `.env` me client id/secret daalo, phir: `python tools/youtube_auth.py`
-5. Jo refresh token mile, `.env` me `YOUTUBE_REFRESH_TOKEN` me daalo.
+3. Credentials -> API key banao (`YOUTUBE_API_KEY`).
+4. Credentials -> OAuth client ID, type **Web application**, redirect URI:
+   `https://developers.google.com/oauthplayground` (`YOUTUBE_CLIENT_ID` + `YOUTUBE_CLIENT_SECRET`).
+5. Refresh token: `https://developers.google.com/oauthplayground` -> gear ⚙️ -> *Use your own OAuth credentials*
+   -> scope `https://www.googleapis.com/auth/youtube.upload` -> Authorize -> Exchange code for tokens ->
+   `refresh_token` copy karo (`YOUTUBE_REFRESH_TOKEN`).
+5b. Laptop hai to `python tools/youtube_auth.py` se bhi token le sakte ho (client type "TVs and Limited Input devices").
+6. Consent screen pe **Publish app** dabao — warna refresh token 7 din me expire hota hai.
 
 Agar channel brand new hai to OAuth token usi Google account ka ho jisse channel bana hai.
+**Repo public hai — ye teen secrets kabhi code/issue/log me daalo mat, sirf Settings -> Secrets me.**
 
 ---
 
@@ -160,9 +169,39 @@ Phir: `python run.py --channel my-channel`.
 
 ---
 
-## 10. Limits (honest note)
+## 10. Free hai ya nahi?
+
+**Haan — ek channel roz chalane ka pura kharcha zero hai.** Sirf ye do cheezein optional paid hain:
+LLM script likhwana, aur apna server.
+
+| Cheez | Kitna free | Note |
+|-------|-----------|------|
+| Python + ffmpeg | unlimited | open source, local |
+| edge-tts (Hindi voice) | unlimited calls | unofficial Microsoft endpoint, key nahi chahiye |
+| YouTube Data API key | 10,000 units/din | search 100 units, trending 1, upload 1,600, thumbnail 50 — ek run ~2,050 units, matlab ~4-5 uploads/din |
+| YouTube upload | free | channel + OAuth account ka hona chahiye |
+| Pexels b-roll | 200 requests/hour | free key, credit optional |
+| GitHub Actions | private repo 2,000 min/month; public repo unlimited | ek run ~5-8 min = 300+ runs/month free |
+| LLM script (OpenAI) | paid | skip karo → curated line-bank se script banta hai |
+
+Free LLM chahiye to koi OpenAI-compatible free tier lagao (`.env` me sirf base URL badalna hai):
+
+- Google Gemini: `OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/`
+- Groq: `OPENAI_BASE_URL=https://api.groq.com/openai/v1`
+
+### Free plan ke 3 real gotchas
+
+1. **OAuth testing mode:** Google Cloud ka OAuth app "Testing" me ho to refresh token **7 din** me expire hota hai.
+   Fix: app ko "Published" karo, ya har hafte `python tools/youtube_auth.py` dobara chalao.
+   (Isliye pehle 1 hafte me token expire ho jaye to upload fail hoga — video render hoke padi rahegi.)
+2. **GitHub cron**: 60 din repo me koi activity na ho to scheduled workflow khud band ho jata hai — mahine me ek commit/manual run kar dena.
+3. **edge-tts** unofficial hai — kabhi block ho to voice ke bina (captions-only) video ban jayega. Tab `assets/broll` + music pe focus karo ya TTS provider badlo.
+
+---
+
+## 11. Limits (honest note)
 
 - Render is device pe test nahi hua — pehla run khud dekh lena (`--dry-run` se start karo).
-- edge-tts free hai par unofficial; kabhi rate limit kar sakta hai — tab fallback captions-only chalta hai.
-- YouTube Data API quota: 10,000 units/din. Ek upload ~1,600 units leta hai, search ~100 per query — ek channel roz ke liye kaafi.
-- Monetization ke liye Shorts pe 10M views/90 din ya 1,000 subs + 10M... (YouTube policy badalti rehti hai — current eligibility check karo).
+- YouTube Data API quota 10,000 units/din: 1 channel roz = ~2,050 units, aaram se fit.
+- YPP (monetization) eligibility: 1,000 subscribers + 10M Shorts views/90 din, ya 4,000 watch hours/12 mahine. Policy badalti rehti hai — YouTube ke current page se confirm karo.
+
