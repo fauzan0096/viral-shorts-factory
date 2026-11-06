@@ -15,6 +15,9 @@ DEFAULT_WORK_DIR = ROOT / "work"
 
 CHANNEL_DEFAULTS: dict = {
     "id": "",
+    # agar ye channel ka YouTube account alag hai to suffix do (e.g. "FACTS"),
+    # phir secrets YOUTUBE_REFRESH_TOKEN_FACTS / _CLIENT_ID_FACTS / _CLIENT_SECRET_FACTS
+    "credential_suffix": "",
     "name": "",
     "language": "hi",
     "duration_target": 38,

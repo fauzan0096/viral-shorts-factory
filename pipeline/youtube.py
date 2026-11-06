@@ -143,14 +143,26 @@ def videos_by_ids(ids: list[str]) -> list[dict]:
 # --------------------------------------------------------------------------- #
 # auth (OAuth refresh token flow)
 # --------------------------------------------------------------------------- #
-def access_token() -> str:
-    client_id = env("YOUTUBE_CLIENT_ID")
-    client_secret = env("YOUTUBE_CLIENT_SECRET")
-    refresh_token = env("YOUTUBE_REFRESH_TOKEN")
+def _credential(name: str, suffix: str | None) -> str | None:
+    """Per-channel override: YOUTUBE_REFRESH_TOKEN_FACTS falls back to YOUTUBE_REFRESH_TOKEN."""
+    if suffix:
+        value = env(f"{name}_{suffix.strip().upper()}")
+        if value:
+            return value
+    return env(name)
+
+
+def access_token(suffix: str | None = None) -> str:
+    client_id = _credential("YOUTUBE_CLIENT_ID", suffix)
+    client_secret = _credential("YOUTUBE_CLIENT_SECRET", suffix)
+    refresh_token = _credential("YOUTUBE_REFRESH_TOKEN", suffix)
     if not all([client_id, client_secret, refresh_token]):
+        hint = f" (channel suffix '{suffix}')" if suffix else ""
         raise RuntimeError(
-            "YouTube upload credentials missing. Set YOUTUBE_CLIENT_ID, "
-            "YOUTUBE_CLIENT_SECRET and YOUTUBE_REFRESH_TOKEN (see tools/youtube_auth.py)."
+            "YouTube upload credentials missing"
+            + hint
+            + ". Set YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET and "
+            "YOUTUBE_REFRESH_TOKEN (see docs/SETUP.md)."
         )
     body = urllib.parse.urlencode(
         {
@@ -187,8 +199,9 @@ def upload_video(
     made_for_kids: bool = False,
     language: str = "en",
     thumbnail: Path | None = None,
+    credential_suffix: str | None = None,
 ) -> dict:
-    token = access_token()
+    token = access_token(credential_suffix)
     file_path = Path(file_path)
     size = file_path.stat().st_size
 

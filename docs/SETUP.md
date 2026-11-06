@@ -169,7 +169,49 @@ Publish karne ke baad token chalta rehta hai (YouTube upload scope "sensitive" h
 
 ---
 
+### Step 11 — Doosra channel ya doosra Google account?
+
+**Short answer: haan, chalega — GitHub aur YouTube ka koi rishta nahi hota.**
+
+- **GitHub account** aur uski email — sirf code aur actions chalane ke liye. Iska YouTube se koi connection nahi.
+  Tumhare GitHub pe `a@gmail.com` ho aur YouTube `b@gmail.com` pe — bilkul theek hai.
+- **YouTube channel** kis Google account pe hai, ye sirf 3 jagah matter karta hai:
+  1. OAuth Playground me sign-in usi account se karo jisse channel bana hai (ya jise us channel pe upload
+     permission hai).
+  2. Cloud project ka consent screen me wo account **test user** ho (Testing mode me).
+  3. API key kisi bhi Cloud project ki ho sakti hai — sirf public data padhti hai.
+
+**Brand account ka dhyan:** agar channel kisi "brand account" pe hai to OAuth ke waqt Google poochta hai kaunsa
+channel/brand account — **wahi chuno**, warna token galat channel pe chala jayega.
+
+**Ek se zyada account (4 channels = 4 different Google accounts)?** Ek repo ka default token ek hi account ka hota hai.
+Do raste:
+
+**Raasta A — har channel ka apna repo (simple, recommended):**
+Har account ke liye is repo ka fork/copy banao, us repo ke **Secrets me usi account ka** token daalo.
+Fayda: har channel ka apna quota (10,000 units/din), alag history, kuch mix nahi hota.
+
+**Raasta B — ek hi repo, per-channel secrets:**
+Channel profile JSON me `credential_suffix` daalo:
+
+```json
+{ "name": "Rok Facts", "credential_suffix": "FACTS" }
+```
+
+Phir repo me ye secrets banao (jo na ho, wo default pe fallback karta hai):
+
+| Channel | Client ID secret | Client secret | Refresh token secret |
+|---------|------------------|---------------|----------------------|
+| motivation (default) | `YOUTUBE_CLIENT_ID` | `YOUTUBE_CLIENT_SECRET` | `YOUTUBE_REFRESH_TOKEN` |
+| facts (`"FACTS"`) | `YOUTUBE_CLIENT_ID_FACTS` | `YOUTUBE_CLIENT_SECRET_FACTS` | `YOUTUBE_REFRESH_TOKEN_FACTS` |
+
+⚠️ Raasta B me **quota ek hi hai** (Cloud project ka 10,000 units/din — sab channels milkar ~4-5 uploads).
+Isliye 3-4 channels ek saath chalane ho to **Raasta A** better hai.
+
+---
+
 ## Part 4 — Roz ka tumhara kaam (5 min)
+
 
 1. Subah: YouTube Studio → private video dekho → **Publish** (ya delete karke dobara run).
 2. Hafte me ek baar `review.md` padho: kaunsa trend aaya, kaunsa idea chuna — isse pata chalega format chal raha hai ya nahi.

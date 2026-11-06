@@ -167,6 +167,11 @@ tools/youtube_auth.py   one-time OAuth
 
 Phir: `python run.py --channel my-channel`.
 
+**Channel ka YouTube account alag hai?** GitHub account/email aur YouTube account ka koi rishta nahi — koi bhi
+combination chalega. Ek repo ka token ek account ka hota hai; per-channel account chahiye to profile me
+`"credential_suffix": "FACTS"` daalo aur secrets `YOUTUBE_CLIENT_ID_FACTS`, `YOUTUBE_CLIENT_SECRET_FACTS`,
+`YOUTUBE_REFRESH_TOKEN_FACTS` banao (details `docs/SETUP.md` Step 11).
+
 ---
 
 ## 10. Free hai ya nahi?

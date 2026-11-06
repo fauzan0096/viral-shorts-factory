@@ -27,6 +27,7 @@ def publish(
         publish_at=publish_at,
         language=meta.get("language", "en"),
         thumbnail=thumbnail,
+        credential_suffix=channel.get("credential_suffix") or None,
     )
     video_id = result.get("id")
     log(f"      uploaded: https://youtu.be/{video_id} ({privacy})")
